@@ -1,0 +1,54 @@
+package srvlt;
+
+import db.*;
+import model.*;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class Servlet6 extends HttpServlet {
+    private static final String CONTENT_TYPE = "text/html; charset=windows-1251";
+
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+    }
+
+    public void doGet(HttpServletRequest request,
+                      HttpServletResponse response) throws ServletException,
+            IOException {
+        response.setContentType(CONTENT_TYPE);
+        PrintWriter out = response.getWriter();
+        try {
+            DbProcessor db = (DbProcessor)this.getServletContext().getAttribute("model");
+            List<Type> typeList = new LinkedList<Type>();
+            typeList = db.getType();
+            out.println("<html>");
+            out.println("<head><title>Servlet1</title></head>");
+            out.println("<body>");
+            out.println("<div style='border:1px solid green; background-color:yellow;'>");
+            out.println("<a href='airports'>Airports</a>");
+            out.println("<a href='companies'>Companies</a>");
+            out.println("<a href='flights'>Flights</a>");
+            out.println("<a href='planes'>Planes</a>");
+            out.println("<a href='tickets'>Tickets</a>");
+            out.println("<a href='types'>Types</a>");
+            out.println("</div>");
+            out.println("<table>" +
+                    "<tr><th>Plane type</th><th style='width:120px;'>Crew</th></tr>");
+            for (Type t : typeList) {
+                out.println(String.format("<tr><td style='text-align:center;'>%s</td><td style='text-align:center;'>%d</td></tr>", t.getPlaneType(), t.getCrew()));
+            }
+            out.println("</table></body></html>");
+            out.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="IdProvider" IDEtalkID="EA34458292B8D81E97612F0E0987C01E" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="10.0.2" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
